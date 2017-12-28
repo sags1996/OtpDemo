@@ -5,6 +5,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.CountDownTimer;
 import android.support.v4.app.ActivityCompat;
@@ -13,13 +14,15 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.telecom.TelecomManager;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity  {
+public class OtpVerification extends AppCompatActivity  {
 public static final int REQ_ID_MUL_PER=1;
     TextView timer;
 
@@ -35,12 +38,12 @@ public static final int REQ_ID_MUL_PER=1;
 
             @Override
             public void onTick(long millisUntilFinished) {
-               timer.setText(""+millisUntilFinished/1000);
+               timer.setText("Resend the code in "+millisUntilFinished/1000);
             }
 
             @Override
             public void onFinish() {
-                timer.setText("Please Re-enter your No.");
+                timer.setText("Please Re-enter your Mobile No.");
 
             }
         }.start();
@@ -51,8 +54,33 @@ public static final int REQ_ID_MUL_PER=1;
         public void onReceive(Context context, Intent intent) {
             if(intent.getAction().equalsIgnoreCase("Otp")){
                 final String message = intent.getStringExtra("message");
-                TextView tv=(TextView)findViewById(R.id.textView);
+                TextView tv=(TextView)findViewById(R.id.otp);
                 tv.setText(message);
+                Button cnfirm=(Button)findViewById(R.id.confirm);
+                cnfirm.setClickable(true);
+                cnfirm.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        //otp input is right or wrong
+                        // DB check
+                        //session implement
+                        //new activity should open
+
+
+                        Intent intent1=getIntent();
+                        String mobile_num=intent1.getStringExtra("mob");
+                        SharedPreferences sharedPreferences=getSharedPreferences("mypref",OtpVerification.this.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString("mobilenumber",mobile_num);
+                        editor.commit();
+
+                        Intent i=new Intent(OtpVerification.this,MainPage.class);
+                        startActivity(i);
+
+
+                    }
+                });
+
             }
         }
     };

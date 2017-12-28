@@ -26,7 +26,7 @@ public class MySMSBroadCastReciever extends BroadcastReceiver {
                 sms_str+=smsm[i].getMessageBody().toString();
                 sms_str+="\r\n";
                 String sender =smsm[i].getOriginatingAddress();
-                if(sender=="9650650883");
+                if(sender=="9650650883" || sender=="8076074270" || sender=="8447383515");
                 {
                     Intent smsIntent= new Intent("Otp");
                     smsIntent.putExtra("message",sms_str);
