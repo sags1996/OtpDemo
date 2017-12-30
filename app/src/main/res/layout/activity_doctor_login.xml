@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.admin.otpdemo.Main2Activity">
+    tools:context="com.example.admin.otpdemo.DoctorLogin">
 
     <ImageView
         android:layout_width="127dp"
@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:id="@+id/staff"
-        android:hint="Staff No"
+        android:hint="Password"
         android:textColor="@color/black"/>
 
 
