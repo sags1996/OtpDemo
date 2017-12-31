@@ -13,8 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".OtpVerification"
-            />
+        <activity android:name=".OtpVerification" />
 
         <receiver android:name=".MySMSBroadCastReciever">
             <intent-filter android:priority="999">
@@ -30,7 +29,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".Main2Activity" />
-        <activity android:name=".MainPage"></activity>
+        <activity android:name=".MainPage" />
+        <activity android:name=".DoctorLogin" />
+        <activity
+            android:name=".DoctorActivity"
+            android:label="@string/title_activity_doctor"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
